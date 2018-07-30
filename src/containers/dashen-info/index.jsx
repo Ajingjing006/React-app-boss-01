@@ -10,7 +10,7 @@ import {
 } from 'antd-mobile'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import HeaderSelector from '../../compopnents/headerSelector'
+import HeaderSelector from '../../components/headerSelector'
 import {updateUser} from '../../redux/actions'
 class DashenInfo extends Component {
     constructor(){
@@ -46,12 +46,14 @@ class DashenInfo extends Component {
         }
         return (
             <div>
-                <NavBar className="topNavBarClass">BOSS信完善</NavBar>
-                <List className="mainsection">
+                <NavBar className='topNavBarClass'>BOSS信完善</NavBar>
+                <List className='mainsection'>
                     <HeaderSelector setHeader={this.setHeader}/>
-                    <InputItem placeholder="请输入应聘职位" onChange={(val)=>this.handleChange('post',val)}>应聘职位:</InputItem>
-                    <InputItem placeholder="请输入期望薪资" onChange={(val)=>this.handleChange('salary',val)}>期望薪资:</InputItem>
-                    <TextareaItem onChange={(val)=>this.handleChange('info',val)}>补充信息:</TextareaItem>
+                    <InputItem placeholder='请输入应聘职位' onChange={(val)=>this.handleChange('post',val)}>应聘职位:</InputItem>
+                    <InputItem placeholder='请输入期望薪资' onChange={(val)=>this.handleChange('salary',val)}>期望薪资:</InputItem>
+                    <TextareaItem title='个人介绍:'
+                                  placeholder='请输入个人介绍'
+                                  rows={3} onChange={(val)=>this.handleChange('info',val)}></TextareaItem>
                 </List>
                 <Button type='primary' className='bottonButon' onClick={this.handleSave}>保存</Button>
             </div>

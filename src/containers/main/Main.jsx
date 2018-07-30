@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {HashRouter,Route,Switch,Redirect} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Cookies from 'js-cookie'
 import BossInfo from '../boss-info'
@@ -10,6 +10,7 @@ import Message from '../message'
 import Personal from '../personal'
 import {getRedirectTo} from '../../utils'
 import {getUser} from '../../redux/actions'
+import NavFooter from '../../components/navFooter'
 class Main extends Component {
     navList = [ // 包含所有导航组件的相关信息数据
         {
@@ -64,7 +65,7 @@ class Main extends Component {
         // 如果有,读取redux中的user状态
         const {user, unReadCount} = this.props
         // 如果user有没有_id, 返回null(不做任何显示)
-        // debugger
+         //debugger
         if(!user._id) {
             return null
         } else {
@@ -73,8 +74,8 @@ class Main extends Component {
             let path = this.props.location.pathname
             if(path==='/') {
                 // 得到一个重定向的路由路径
-                path = getRedirectTo(user.type, user.header)
-                return <Redirect to= {path}/>
+                let newPath = getRedirectTo(user)
+                return <Redirect to= {newPath}/>
             }
         }
 
@@ -94,17 +95,18 @@ class Main extends Component {
         }
 
         return (
-            <HashRouter>
+            <div>
                 <Switch>
                     {
                         this.navList.map((item,index)=>{
                             return <Route path={item.path} key={item.path} component={item.component}></Route>
                         })
                     }
-                    <Route path="/bossinfo" component={BossInfo}></Route>
-                    <Route path="/dasheninfo" component={DashenInfo}></Route>
+                    <Route path='/bossinfo' component={BossInfo}></Route>
+                    <Route path='/dasheninfo' component={DashenInfo}></Route>
                 </Switch>
-            </HashRouter>
+                {currentNav ? <NavFooter navList={navList} unReadCount={unReadCount}/> : null}
+            </div>
         )
     }
 }

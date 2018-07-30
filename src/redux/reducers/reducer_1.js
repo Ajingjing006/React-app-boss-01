@@ -11,8 +11,8 @@ const initUser = {
     msg:'',//错误提示信息
     redirectTo:''//需要重定向的路由路径
 }
-function userX(state=initUser,action){
-    switch(action.type){
+function userX (state=initUser,action) {
+    switch (action.type) {
         case AUTH_SUCCESS:
             return {...action.data,redirectTo:'/'}
         case ERROR_MSG:

@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Logo from '../../compopnents/logo/logo.jsx'
+import Logo from '../../components/logo/logo.jsx'
 import {NavBar,
     WhiteSpace,
     WingBlank,
@@ -48,16 +48,16 @@ class Register extends Component {
                     <WhiteSpace/>
                     <InputItem placeholder={registerLbels.usernametipslbl} onChange={val=>{this.handleChange('username',val)}}>{registerLbels.usernamelbl}</InputItem>
                     <WhiteSpace/>
-                    <InputItem type="password" placeholder={registerLbels.passwordtipslbl} onChange={val=>{this.handleChange('password',val)}}>{registerLbels.passwordlbl}</InputItem>
+                    <InputItem type='password' placeholder={registerLbels.passwordtipslbl} onChange={val=>{this.handleChange('password',val)}}>{registerLbels.passwordlbl}</InputItem>
                     <WhiteSpace/>
-                    <InputItem type="password" placeholder={registerLbels.passwordtips2lbl} onChange={val=>{this.handleChange('password2',val)}}>{registerLbels.password2lbl}</InputItem>
+                    <InputItem type='password' placeholder={registerLbels.passwordtips2lbl} onChange={val=>{this.handleChange('password2',val)}}>{registerLbels.password2lbl}</InputItem>
                     <WhiteSpace/>
                     <ListItem>
                         <span>{registerLbels.usertypelbl}</span>
                         <Radio checked={this.state.type == 'boss'} onChange={val=>{this.handleChange('type','boss')}}>{registerLbels.usertype1lbl}</Radio>
                         <Radio checked={this.state.type == 'dashen'}  onChange={val=>{this.handleChange('type','dashen')}}>{registerLbels.usertype2lbl}</Radio>
                     </ListItem>
-                    <Button onClick={this.registerHandle} type="primary">{registerLbels.registerlbl}</Button>
+                    <Button onClick={this.registerHandle} type='primary'>{registerLbels.registerlbl}</Button>
                     <Button onClick={this.toLoginHandle} >{registerLbels.loginoldlbl}</Button>
                 </List>
                 <WhiteSpace/>

@@ -26,15 +26,15 @@ import {
 
 function initIO(dispatch, userid) {
     // 1. 创建对象之前: 判断对象是否已经存在, 只有不存在才去创建
-    if(!io.socket) {
+    if (!io.socket) {
         // 连接服务器, 得到与服务器的连接对象
         io.socket = io('ws://localhost:4000')  // 2. 创建对象之后: 保存对象
         // 绑定监听, 接收服务器发送的消息
         io.socket.on('receiveMsg', function (chatMsg) {
-            console.log('客户端接收服务器发送的消息', chatMsg)
+        	console.log('客户端接收服务器发送的消息', chatMsg)
             // 只有当chatMsg是与当前用户相关的消息, 才去分发同步action保存消息
             // debugger
-            if(userid===chatMsg.from || userid===chatMsg.to) {
+            if (userid === chatMsg.from || userid === chatMsg.to) {
                 dispatch(receiveMsg(chatMsg, userid))
             }
         })
@@ -47,7 +47,7 @@ async function getMsgList(dispatch, userid) {
     initIO(dispatch, userid)
     const response = await reqChatMsgList()
     const result = response.data
-    if(result.code===0) {
+    if (result.code===0) {
         const {users, chatMsgs} = result.data
         // 分发同步action
         dispatch(receiveMsgList({users, chatMsgs, userid}))
@@ -55,11 +55,11 @@ async function getMsgList(dispatch, userid) {
 }
 
 //授权成功的同步action
-const authSuccess = (user) => ({type:AUTH_SUCCESS,data:user})
+const authSuccess = (user) => ({type: AUTH_SUCCESS, data: user})
 //错误提示信息的同步action
-const errorMsg = (msg) => ({type:ERROR_MSG,data:msg})
+const errorMsg = (msg) => ({type: ERROR_MSG, data: msg})
 
-const receiveUser = (user) => ({type: RECEIVE_USER, data:user})
+const receiveUser = (user) => ({type: RECEIVE_USER, data: user})
 // 重置用户的同步action
 export const resetUser = (msg) => ({type: RESET_USER, data: msg})
 

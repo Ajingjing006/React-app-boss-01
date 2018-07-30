@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import Logo from '../../compopnents/logo/logo.jsx'
+import Logo from '../../components/logo/logo.jsx'
 import {NavBar,
     WhiteSpace,
     List,
@@ -49,9 +49,9 @@ class Login extends Component {
                     <WhiteSpace/>
                     <InputItem placeholder={loginLbels.usernametipslbl} onChange={val=>{this.handleChange('username',val)}}>{loginLbels.usernamelbl}</InputItem>
                     <WhiteSpace/>
-                    <InputItem type="password" placeholder={loginLbels.passwordtipslbl} onChange={val=>{this.handleChange('password',val)}} >{loginLbels.passwordlbl}</InputItem>
+                    <InputItem type='password' placeholder={loginLbels.passwordtipslbl} onChange={val=>{this.handleChange('password',val)}} >{loginLbels.passwordlbl}</InputItem>
                     <WhiteSpace/>
-                    <Button onClick={this.loginHandle} type="primary">{loginLbels.loginlbl}</Button>
+                    <Button onClick={this.loginHandle} type='primary'>{loginLbels.loginlbl}</Button>
                     <Button onClick={this.toRegisterHandle}>{loginLbels.registernewlbl}</Button>
                 </List>
                 <WhiteSpace/>
