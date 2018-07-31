@@ -1,10 +1,10 @@
 import React,{Component} from 'react'
 
-class Personal extends Component{
-    constructor(){
+class Personal extends Component {
+    constructor() {
         super()
     }
-    render(){
+    render() {
         return <div>Personal</div>
     }
 }

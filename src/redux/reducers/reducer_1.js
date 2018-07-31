@@ -11,14 +11,13 @@ const initUser = {
     msg:'',//错误提示信息
     redirectTo:''//需要重定向的路由路径
 }
-function userX (state=initUser,action) {
+function userX(state = initUser, action) {
     switch (action.type) {
         case AUTH_SUCCESS:
-            return {...action.data,redirectTo:'/'}
+            return {...action.data, redirectTo: '/'}
         case ERROR_MSG:
-            return {...state,msg:action.data}
-        case RECEIVE_USER:
-            debugger
+            return {...state, msg: action.data}
+	    case RECEIVE_USER:
             return action.data
         case RESET_USER: // data是msg
             return {...initUser, msg: action.data}

@@ -5,42 +5,43 @@ class HeaderSelector extends Component {
     static propTypes = {
         // setHeader: PropTypes.fun.isRequired
     }
-    constructor(){
+    constructor() {
         super()
-        this.state= {
-            icon:null
+        this.state = {
+            icon: null
         }
     }
-    selectHeader = ({text,icon})=>{
+    selectHeader = ({text,icon}) => {
         this.props.setHeader(text)
-        this.setState({
-            icon
-        })
+        this.setState({icon})
     }
-    getHeaderList = ()=>{
-        if(!this.headerList){
-            let headerList = [];
-            for(let i=1;i <= 20;i++){
+    getHeaderList = () => {
+        if (!this.headerList) {
+            let headerList = []
+            for (let i=1; i <= 20; i++) {
                 let text = `头像${i}`
                 headerList.push({
                     text,
-                    icon:require(`../../assets/images/${text}.png`)
+                    icon: require(`../../assets/images/${text}.png`)
                 })
             }
-            this.headerList = headerList;
+
+            this.headerList = headerList
         }
-        return this.headerList;
+        return this.headerList
     }
 
-    render(){
+    render() {
         let {icon} = this.state
-        let headertext = icon?(<span>以选择头像:<img src={icon}></img></span>):'请选择头像'
+        let headertext = icon
+	        ?(<span>以选择头像:<img src={icon}></img></span>)
+	        :'请选择头像'
+
         return (
-            <List renderHeader={()=>headertext}>
+            <List renderHeader={() => headertext}>
                 <Grid data={this.getHeaderList()} columnNum={6} onClick={this.selectHeader}/>
             </List>
         )
     }
 }
-
 export default HeaderSelector

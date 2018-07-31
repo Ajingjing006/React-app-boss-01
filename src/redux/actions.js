@@ -21,7 +21,7 @@ import {
     reqUserList,
     reqChatMsgList,
     reqReadMsg
-} from "../api"
+} from '../api'
 
 
 function initIO(dispatch, userid) {
@@ -47,7 +47,7 @@ async function getMsgList(dispatch, userid) {
     initIO(dispatch, userid)
     const response = await reqChatMsgList()
     const result = response.data
-    if (result.code===0) {
+    if (!result.code) {
         const {users, chatMsgs} = result.data
         // 分发同步action
         dispatch(receiveMsgList({users, chatMsgs, userid}))
@@ -66,31 +66,32 @@ export const resetUser = (msg) => ({type: RESET_USER, data: msg})
 // 接收用户列表的同步action
 const receiveUserList = (userList) => ({type: RECEIVE_USER_LIST, data: userList})
 // 接收消息列表的同步action
-const receiveMsgList = ({users, chatMsgs, userid}) => ({type: RECEIVE_MSG_LIST, data:{users, chatMsgs, userid}})
+const receiveMsgList = ({users, chatMsgs, userid}) => ({type: RECEIVE_MSG_LIST, data: {users, chatMsgs, userid}})
 // 接收一个消息的同步action
 const receiveMsg = (chatMsg, userid) => ({type: RECEIVE_MSG, data: {chatMsg, userid}})
 // 读取了某个聊天消息的同步action
 const msgRead = ({count, from, to}) => ({type: MSG_READ, data: {count, from, to}})
 
 //注册异步action
-export const register = (user)=>{
-    const {username,password,password2,type} = user
-    if(!username){
+export const register = (user) => {
+    const {username, password, password2, type} = user
+    if (!username) {
         return errorMsg('用户名必须指定')
     }
-    if(password !== password2){
+    if (password !== password2) {
         return errorMsg('两次密码要一致')
     }
 
     //表单数据合法,返回一个发送异步ajax请求的函数
     return async dispatch => {
         //发送注册的ajax异步请求
-        const response = await reqRegister({username,password,type})
+        const response = await reqRegister({username, password, type})
         const result = response.data
-        if(result.code ===0){
+        if (!result.code) {
             //分发授权成功的同步action
             dispatch(authSuccess(result.data))
-        }else{
+        }
+        else {
             //分发错误提示信息的同步action
             dispatch(errorMsg(result.msg))
         }
@@ -102,7 +103,7 @@ export const readMsg = (from, to) => {
     return async dispatch => {
         const response = await reqReadMsg(from)
         const result = response.data
-        if(result.code===0) {
+        if(!result.code) {
             const count = result.data
             dispatch(msgRead({count, from, to}))
         }
@@ -111,37 +112,38 @@ export const readMsg = (from, to) => {
 
 
 //注册登录异步action
-export const login = (user)=>{
-    const {username,password,type} = user
-    if(!username){
+export const login = (user) => {
+    const {username, password, type} = user
+    if (!username) {
         return errorMsg('用户名必须指定')
     }
-    if(!password){
+    if (!password) {
         return errorMsg('密码必须指定')
     }
     return async dispatch => {
         //发送登录的ajax异步请求
         const response = await reqLogin(user)
         const result = response.data
-        if(result.code ===0){
+        if (!result.code) {
             //分发授权成功的同步action
             dispatch(authSuccess(result.data))
-        }else{
+        }
+        else {
             //分发错误提示信息的同步action
             dispatch(errorMsg(result.msg))
         }
     }
 }
 
-export const updateUser = (user)=>{
-    return async dispatch =>{
+export const updateUser = (user) => {
+    return async dispatch => {
         const response = await reqUpdateUser(user)
         const result = response.data
-        if(result.code ===0){
+        if (!result.code) {
             dispatch(receiveUser(result.data))
-        }else{
+        }
+        else {
             //分发错误提示信息的同步action
-            debugger
             dispatch(resetUser(result.msg))
         }
     }
@@ -154,11 +156,13 @@ export const getUser = () => {
         // 执行异步ajax请求
         const response = await reqUser()
         const result = response.data
-        if(result.code===0) { // 成功
+        if (!result.code) { // 成功
             getMsgList(dispatch, result.data._id)
             dispatch(receiveUser(result.data))
-        } else { // 失败
+        }
+        else { // 失败
             dispatch(resetUser(result.msg))
         }
     }
 }
+

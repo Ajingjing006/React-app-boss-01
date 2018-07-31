@@ -1,10 +1,10 @@
 import React,{Component} from 'react'
 
-class Message extends Component{
-    constructor(){
+class Message extends Component {
+    constructor() {
         super()
     }
-    render(){
+    render() {
         return <div>Message</div>
     }
 }

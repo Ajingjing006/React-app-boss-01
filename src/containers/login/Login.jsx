@@ -14,7 +14,7 @@ import {loginLbels} from '../../labels.js'
 import {registerLbels} from "../../labels";
 const ListItem = List.Item;
 class Login extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             username:'',
@@ -23,20 +23,20 @@ class Login extends Component {
             type:''
         }
     }
-    handleChange = (name,val)=>{
+    handleChange = (name, val) => {
         this.setState({
-            [name]:val
+            [name]: val
         })
     }
-    loginHandle = ()=>{
+    loginHandle = ()=> {
         this.props.login(this.state)
     }
-    toRegisterHandle = ()=>{
+    toRegisterHandle = ()=> {
         this.props.history.replace('/register')
     }
-    render(){
-        const {msg,redirectTo} = this.props.userData
-        if(redirectTo){
+    render() {
+        const {msg, redirectTo} = this.props.userData
+        if (redirectTo) {
             return <Redirect to={redirectTo} />
         }
         return (
@@ -47,9 +47,9 @@ class Login extends Component {
                 <List>
                     {msg?<div className='error-msg'>{msg}</div>:null}
                     <WhiteSpace/>
-                    <InputItem placeholder={loginLbels.usernametipslbl} onChange={val=>{this.handleChange('username',val)}}>{loginLbels.usernamelbl}</InputItem>
+                    <InputItem placeholder={loginLbels.usernametipslbl} onChange={val => {this.handleChange('username', val)}}>{loginLbels.usernamelbl}</InputItem>
                     <WhiteSpace/>
-                    <InputItem type='password' placeholder={loginLbels.passwordtipslbl} onChange={val=>{this.handleChange('password',val)}} >{loginLbels.passwordlbl}</InputItem>
+                    <InputItem type='password' placeholder={loginLbels.passwordtipslbl} onChange={val => {this.handleChange('password', val)}} >{loginLbels.passwordlbl}</InputItem>
                     <WhiteSpace/>
                     <Button onClick={this.loginHandle} type='primary'>{loginLbels.loginlbl}</Button>
                     <Button onClick={this.toRegisterHandle}>{loginLbels.registernewlbl}</Button>

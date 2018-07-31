@@ -1,12 +1,11 @@
 import React,{Component} from 'react'
 
-class Boss extends Component{
-    constructor(){
+class Boss extends Component {
+    constructor() {
         super()
     }
-    render(){
+    render() {
         return <div>大神列表</div>
     }
 }
-
 export default Boss

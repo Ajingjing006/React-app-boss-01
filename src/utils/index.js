@@ -1,12 +1,13 @@
 function getRedirectTo({type,header}){//base on user type and user header to choose perfect path
     let path = ''
     //debugger
-    if(type === 'boss'){
+    if (type === 'boss') {
         path = 'boss'
-    }else{
+    }
+    else {
         path = 'dashen'
     }
-    if(!header){
+    if (!header) {
         path += 'info'
     }
     return path

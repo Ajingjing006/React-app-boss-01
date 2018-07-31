@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom'
 import HeaderSelector from '../../components/headerSelector'
 import {updateUser} from '../../redux/actions'
 class BossInfo extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             header: '', // 头像名称
@@ -24,24 +24,24 @@ class BossInfo extends Component {
         }
     }
 
-    setHeader = (header)=>{
+    setHeader = (header) => {
         this.setState({
             header
         })
     }
-    handleChange = (type,val)=>{
+    handleChange = (type, val) => {
         this.setState({
-            [type]:val
+            [type]: val
         })
     }
 
-    handleSave = ()=>{
+    handleSave = ()=> {
         this.props.updateUser(this.state)
     }
 
-    render(){
+    render() {
     	let {redirectTo} = this.state;
-		    if(redirectTo){
+		    if (redirectTo) {
             return <Redirect to={redirectTo}/>
         }
         return (
@@ -49,10 +49,10 @@ class BossInfo extends Component {
                 <NavBar className='topNavBarClass'>BOSS信完善</NavBar>
                 <List className='mainsection'>
                     <HeaderSelector setHeader={this.setHeader}/>
-                    <InputItem placeholder='请输入招聘职位' onChange={(val)=>this.handleChange('post',val)}>招聘职位:</InputItem>
-                    <InputItem placeholder='请输入公司名称' onChange={(val)=>this.handleChange('company',val)}>公司名称:</InputItem>
-                    <InputItem placeholder='请输入职位薪资' onChange={(val)=>this.handleChange('salary',val)}>职位薪资:</InputItem>
-                    <InputItem placeholder='请输入职位要求' onChange={(val)=>this.handleChange('info',val)}>职位要求:</InputItem>
+                    <InputItem placeholder='请输入招聘职位' onChange={(val) => this.handleChange('post',val)}>招聘职位:</InputItem>
+                    <InputItem placeholder='请输入公司名称' onChange={(val) => this.handleChange('company',val)}>公司名称:</InputItem>
+                    <InputItem placeholder='请输入职位薪资' onChange={(val) => this.handleChange('salary',val)}>职位薪资:</InputItem>
+                    <InputItem placeholder='请输入职位要求' onChange={(val) => this.handleChange('info',val)}>职位要求:</InputItem>
                 </List>
                 <Button type='primary' className='bottonButon' onClick={this.handleSave}>保存</Button>
             </div>
@@ -60,8 +60,8 @@ class BossInfo extends Component {
     }
 }
 export default connect(
-    state=>({
-        user:state.userX
+    state => ({
+        user: state.userX
     }),
     {updateUser}
 )(BossInfo)

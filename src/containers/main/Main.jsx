@@ -42,37 +42,38 @@ class Main extends Component {
             text: '个人',
         }
     ]
-    constructor(){
+    constructor() {
         super()
     }
-    componentDidMount () {
+    componentDidMount() {
         //登陆过(cookie中有userid), 但没有有登陆(redux管理的user中没有_id) 发请求获取对应的user
         const userid = Cookies.get('userid')
         const {_id} = this.props.user
-        if(userid && !_id) {
+        if (userid && !_id) {
             // 发送异步请求, 获取user
             // console.log('发送ajax请求获取user')
             this.props.getUser()
         }
     }
-    render(){
+    render() {
         // 读取cookie中的userid
         const userid = Cookies.get('userid')
         // 如果没有, 自动重定向到登陆界面
-        if(!userid) {
+        if (!userid) {
             return <Redirect to='/login'/>
         }
         // 如果有,读取redux中的user状态
         const {user, unReadCount} = this.props
         // 如果user有没有_id, 返回null(不做任何显示)
          //debugger
-        if(!user._id) {
+        if (!user._id) {
             return null
-        } else {
+        }
+        else {
             // 如果有_id, 显示对应的界面
             // 如果请求根路径, 根据user的type和header来计算出一个重定向的路由路径, 并自动重定向
             let path = this.props.location.pathname
-            if(path==='/') {
+            if(path === '/') {
                 // 得到一个重定向的路由路径
                 let newPath = getRedirectTo(user)
                 return <Redirect to= {newPath}/>
@@ -81,14 +82,15 @@ class Main extends Component {
 
         const {navList} = this
         const path = this.props.location.pathname // 请求的路径
-        const currentNav = navList.find(nav=> nav.path===path) // 得到当前的nav, 可能没有
+        const currentNav = navList.find(nav => nav.path === path) // 得到当前的nav, 可能没有
 
-        if(currentNav) {
+        if (currentNav) {
             // 决定哪个路由需要隐藏
-            if(user.type==='laoban') {
+            if (user.type === 'laoban') {
                 // 隐藏数组的第2个
                 navList[1].hide = true
-            } else {
+            }
+            else {
                 // 隐藏数组的第1个
                 navList[0].hide = true
             }
@@ -98,19 +100,21 @@ class Main extends Component {
             <div>
                 <Switch>
                     {
-                        this.navList.map((item,index)=>{
+                        this.navList.map((item, index) => {
                             return <Route path={item.path} key={item.path} component={item.component}></Route>
                         })
                     }
                     <Route path='/bossinfo' component={BossInfo}></Route>
                     <Route path='/dasheninfo' component={DashenInfo}></Route>
                 </Switch>
-                {currentNav ? <NavFooter navList={navList} unReadCount={unReadCount}/> : null}
+                {currentNav
+	                ? <NavFooter navList={navList} unReadCount={unReadCount}/>
+	                : null}
             </div>
         )
     }
 }
 export default connect(
-    state => ({user:state.userX}),
+    state => ({user: state.userX}),
     {getUser}
 )(Main)

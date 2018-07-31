@@ -13,27 +13,27 @@ import {register} from '../../redux/actions'
 import {registerLbels} from '../../labels.js'
 const ListItem = List.Item;
 class Register extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
-            username:'',
-            password:'',
-            password2:'',
-            type:''
+            username: '',
+            password: '',
+            password2: '',
+            type: ''
         }
     }
-    registerHandle = ()=>{
+    registerHandle = () => {
         this.props.register(this.state)
     }
-    handleChange = (name,val)=>{
+    handleChange = (name,val) => {
        this.setState({
-           [name]:val
+           [name]: val
        })
     }
-    toLoginHandle = ()=>{
+    toLoginHandle = () => {
         this.props.history.replace('/login')
     }
-    render(){
+    render() {
         const {msg,redirectTo} = this.props.userData
         if(redirectTo){
             return <Redirect to={redirectTo} />
