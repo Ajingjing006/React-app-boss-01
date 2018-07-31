@@ -29,13 +29,13 @@ class DashenInfo extends Component {
             header
         })
     }
-    handleChange = (type,val) => {
+    handleChange = (type, val) => {
         this.setState({
             [type]: val
         })
     }
 
-    handleSave = ()=> {
+    handleSave = () => {
         this.props.updateUser(this.state)
     }
 

@@ -7,6 +7,7 @@ function getRedirectTo({type,header}){//base on user type and user header to cho
     else {
         path = 'dashen'
     }
+
     if (!header) {
         path += 'info'
     }

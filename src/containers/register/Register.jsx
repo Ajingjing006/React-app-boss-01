@@ -67,7 +67,7 @@ class Register extends Component {
 }
 export default connect(
     state => {
-        return {userData:state.userX}//此处表示的是对于redux的全部状态，{
+        return {userData: state.userX}//此处表示的是对于redux的全部状态，{
         // user:{
         //
         // }

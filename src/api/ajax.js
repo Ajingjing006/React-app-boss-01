@@ -4,7 +4,7 @@
  * */
 import axios from 'axios'
 export default function ajax(url, data = {}, type = 'GET') {
-    if (type==='GET') {
+    if (type === 'GET') {
         let paramStr = ''
         for (let i in data) {
             if (data.hasOwnProperty(i)) {

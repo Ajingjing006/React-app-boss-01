@@ -35,7 +35,7 @@ class BossInfo extends Component {
         })
     }
 
-    handleSave = ()=> {
+    handleSave = () => {
         this.props.updateUser(this.state)
     }
 

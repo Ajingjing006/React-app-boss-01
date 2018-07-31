@@ -8,7 +8,7 @@ const defaultLbls = {
 }
 const loginLbels = Object.assign(defaultLbls,
 	{
-		registernewlbl:'注册新账户'
+		registernewlbl: '注册新账户'
 	}
 )
 const registerLbels = Object.assign(defaultLbls,

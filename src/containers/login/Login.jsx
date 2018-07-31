@@ -28,10 +28,10 @@ class Login extends Component {
             [name]: val
         })
     }
-    loginHandle = ()=> {
+    loginHandle = () => {
         this.props.login(this.state)
     }
-    toRegisterHandle = ()=> {
+    toRegisterHandle = () => {
         this.props.history.replace('/register')
     }
     render() {
